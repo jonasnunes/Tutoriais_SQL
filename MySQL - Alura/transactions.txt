@@ -1,0 +1,15 @@
+Transação no MySQL:
+- Uma unidade lógica de processamento que visa preservar a integridade
+e consistência dos dados
+
+Sintaxe básica:
+
+- START TRANSACTION
+- COMMIT OU ROLLBACK
+
+START TRANSACTION: Cria um ponto de estado do banco de dados
+COMMIT: Confirma todas as operações entre o START TRANSACTION e o comando COMMIT
+Todos os INSERTS, UPDATES, ou DELETES irão ser confirmados e gravados na base.
+
+ROLLBACK: Tudo que foi feito entre o START TRANSACTION e o ROLLBACK será desprezado
+e os dados voltarão ao status de quando o START TRANSACTION foi executado

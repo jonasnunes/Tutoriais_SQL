@@ -190,3 +190,16 @@ WHERE B.IDADE <= 18;
 -- apagando dados de uma tabela
 DELETE FROM ITENS_NOTAS;
 DELETE FROM NOTAS;
+
+-- iniciando uma transação
+START TRANSACTION;
+
+-- aumentando em 15% a comissão de todos os vendedores
+UPDATE VENDEDORES
+SET COMISSAO = COMISSAO * 1.15;
+
+-- finalizando a transação e descartando as alterações
+ROLLBACK;
+
+-- finalizando a transação confirmando as alterações
+COMMIT;
