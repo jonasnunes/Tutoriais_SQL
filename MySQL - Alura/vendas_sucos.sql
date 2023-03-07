@@ -148,3 +148,45 @@ SELECT
 NUMERO, CODIGO_DO_PRODUTO AS CODIGO, QUANTIDADE, PRECO
 FROM sucos_vendas.itens_notas_fiscais
 WHERE CODIGO_DO_PRODUTO NOT IN (SELECT CODIGO FROM ITENS_NOTAS);
+
+-- modificando um registro na tabela
+UPDATE PRODUTOS
+SET PRECO_LISTA = 5
+WHERE CODIGO = '1000889';
+
+-- modificando registros de mais de uma coluna de uma vez
+UPDATE PRODUTOS
+SET EMBALAGEM = 'PET', TAMANHO = '1 Litro', DESCRITOR = 'Sabor da Montanha - 1 Litro - Uva'
+WHERE CODIGO = '1000889';
+
+-- preço dos produtos de maracujá ficaram 10% mais caros
+UPDATE PRODUTOS
+SET PRECO_LISTA = PRECO_LISTA * 1.10
+WHERE SABOR = 'Maracujá';
+
+-- exercício
+UPDATE CLIENTES
+SET ENDERECO = 'Rua Jorge Emílio 23', BAIRRO = 'Santo Amaro', CIDADE = 'São Paulo', ESTADO = 'SP', CEP = '8833223'
+WHERE CPF = '19290992743';
+
+-- realizando update com inner join
+UPDATE VENDEDORES A
+INNER JOIN SUCOS_VENDAS.TABELA_DE_VENDEDORES B
+ON A.MATRICULA = SUBSTRING(B.MATRICULA, 3, 3)
+SET A.FERIAS = B.DE_FERIAS;
+
+-- aumentar o volume de compra em 30% dos clientes que estejam nos mesmos bairros que os vendedores
+UPDATE CLIENTES A
+INNER JOIN VENDEDORES B
+ON A.BAIRRO = B.BAIRRO
+SET VOLUME_COMPRA = VOLUME_COMPRA * 1.30;
+
+-- excluir as notas fiscais cujos clientes tenham a idade menor ou igual a 18 anos
+DELETE A FROM NOTAS A 
+INNER JOIN CLIENTES B
+ON A.CPF = B.CPF
+WHERE B.IDADE <= 18;
+
+-- apagando dados de uma tabela
+DELETE FROM ITENS_NOTAS;
+DELETE FROM NOTAS;
