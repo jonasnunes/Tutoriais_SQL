@@ -1,0 +1,25 @@
+Análise dos requisitos:
+
+- Entendimento das regras de negócio
+- Efetuar atividades de entrevistas e reuniões
+- Desenho de modelo mais fiel a realidade
+
+Modelo conceitual:
+
+- Construção do diagrama de entidade e relacionamento
+- Estabelecer a cardinalidade das entidades
+
+Atributos das entidades:
+
+- Estabelece características de cada entidade
+
+Transformar o diagrama de entidades em banco de dados
+
+- Transformar cada entidade em uma ou mais tabelas físicas do banco de dados
+- Cada relação da modelagem será um relacionamento nas tabelas do banco de dados
+
+Construir o banco de dados:
+
+- Podemos usar ferramentas CASE para isso
+- CASE: Computer-Aided Software Engineering
+- Ex: Star, UML, Astah, ERWin

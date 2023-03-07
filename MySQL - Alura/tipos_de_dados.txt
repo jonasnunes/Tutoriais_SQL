@@ -1,0 +1,93 @@
+TIPO      | Valor em Bytes | Menor valor - | Menor valor unsigned | Maior valor + | Maior valor unsigned |
+	  |		   |		   |			  |		  |			 |
+TINYINT   |	   1	   |   -128	   |	     0		  |   127	  |   255		 |
+SMALLINT  |	   2       |   -32768	   |	     0		  |   32767	  |   65535		 |
+MEDIUMINT |	   3       |   -8388608	   |   	     0		  |   8388608     |   16777215		 |
+INT       |	   4       |   -2147483648 |	     0		  |   2147483647  |   4294967295	 |
+BIGINT    |	   8	   |   -2xE63	   |	     0 		  |   2xE63-1     |   2xE64-1		 |
+
+Propriedade UNSIGNED:
+- Não permite sinal no número. Por isso o conjunto de valores válidos aumentam.
+
+Ponto Flutuante:
+
+FLOAT - Precisão simples (4 bytes)
+DOUBLE - Precisão dupla (8 bytes)
+
+Exemplo: Se declaramos um campo FLOAT(7,4) se incluírmos o número 999,00009 o valor armazenado será 999,0001
+
+Fixo:
+
+DECIMAL OU NUMERIC
+
+Tamanho: Até 65 dígitos
+Especificamos o número de dígitos e o número de casas decimais
+Exemplo: Se declaramos um campo DECIMAL(5,2) iremos poder armazenar valores somente entre
+-999,99 e 999,99
+
+Único:
+
+BIT
+
+Tamanho: Até 64 Bits
+Exemplo: BIT(1) - Pode ser 1 ou 0
+BIT(2) - Pode ser 01, 10, 00, 11
+
+Atributos dos campos numéricos:
+
+SIGNED ou UNSIGNED - Vai possuir ou não sinal no número
+
+ZEROFILL - Preenche com Zeros os espaços
+Exemplo: INT(4). Se armazenarmos o valor 5 será gravado 0005
+
+AUTO_INCREMENT - Sequência auto incrementada
+Exemplo: 1, 2, 3, 4, 5 ...
+
+Erros de OUT OF RANGE:
+- Vão ocorrer quando os valores estourarem os limites
+
+Data e Hora:
+
+DATE - 1000-01-01 até 9999-12-31
+DATETIME - 1000-01-01 00:00:00 até 9999-12-31 23:59:59
+TIMESTAMP - 1970-01-01 00:00:01 UTC até 2038-01-19 UTC
+TIME: -838:59:59 até 839:59:59
+YEAR - 1901 até 2155 (Pode ser expresso no formato 2 ou 4 dígitos)
+
+STRINGS:
+
+CHAR - Cadeia de caracteres com valor fixo (de 0 a 255)
+VARCHAR - Cadeia de caracteres com valor variado (de 0 a 255)
+
+CHAR(4) - "aa" - " aa"
+VARCHAR(4) - "aa" - "aa"
+
+BINARY - Cadeia de caracteres com valor fixo (de 0 a 255). Expressos em binário
+VARBINARY - Cadeia de caracteres com valor variado (de 0 a 255). Expressos em Binário
+
+- Armazenar binários (conteúdo de uma foto ou arquivo por exemplo)
+TINYBLOB
+BLOB
+MEDIUMBLOB
+LONGBLOB
+
+- Armazenamento de texto propriamente ditos
+TINYTEXT
+TEXT
+MEDIUMTEXT
+LONGTEXT
+
+ENUM
+- Permite armazenar uma lista pré-defenidas de valores
+Exemplo:
+Size ENUM('x-small', 'small', 'medium', 'large', 'x-large')
+
+Atributos dos campos String:
+SET e COLLATE - Que tipo de conjunto de caracteres serão suportados
+
+Spacial:
+
+GEOMETRY
+POINT
+LINESTRING
+POLYGON
