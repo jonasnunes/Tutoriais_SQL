@@ -1,0 +1,81 @@
+-- criando uma stored procedure
+DELIMITER //
+CREATE PROCEDURE `ALO_MUNDO` ()
+BEGIN
+	-- mostrar uma mensagem e definir um alias
+	SELECT 'Alô Mundo!' AS MENSAGEM;
+END//
+
+-- chamando a stored procedure
+CALL ALO_MUNDO;
+
+-- alterando uma stored procedure (devemos excluir para refazer com as alterações necessárias)
+DROP PROCEDURE IF EXISTS `ALO_MUNDO`;
+DELIMITER //
+CREATE PROCEDURE `ALO_MUNDO` ()
+BEGIN
+	-- mostrar uma mensagem e definir um alias
+    SELECT 'Alô Mundo!' AS MENSAGEM;
+END//
+
+-- excluindo uma stored procedure
+DROP PROCEDURE ALO_MUNDO;
+
+-- criando uma stored procedure com variável
+DELIMITER //
+CREATE PROCEDURE `EXIBE_VARIAVEL` ()
+BEGIN
+	DECLARE TEXTO VARCHAR(12) DEFAULT 'Alô Mundo!!!';
+    SELECT TEXTO AS MENSAGEM;
+END//
+
+CALL EXIBE_VARIAVEL;
+
+DELIMITER //
+CREATE PROCEDURE `FICHA` ()
+BEGIN
+	DECLARE NOME VARCHAR(10) DEFAULT 'Jonas';
+    DECLARE DT_NASCIMENTO DATE DEFAULT '1994-08-11';
+    DECLARE IDADE TINYINT DEFAULT 29;
+    DECLARE ALTURA DECIMAL(3,2) DEFAULT 1.70;
+    SELECT CONCAT(
+		'Nome: ', NOME, ' Data de nascimento: ', DT_NASCIMENTO, ' Idade: ', IDADE, ' anos ', ' Altura: ', ALTURA, ' m'
+    ) AS MENSAGEM;
+END//
+
+CALL FICHA;
+
+-- atribuindo um valor a mais de uma variável
+DELIMITER //
+CREATE PROCEDURE `ATRIBUINDO_VALOR` ()
+BEGIN
+	DECLARE N1, N2 TINYINT DEFAULT 5;
+    SELECT N1, N2;
+END//
+
+CALL ATRIBUINDO_VALOR;
+
+-- alterando valores dentro da procedure
+DELIMITER //
+CREATE PROCEDURE `MODIFICANDO_VALOR` ()
+BEGIN
+	DECLARE TEXTO VARCHAR(20) DEFAULT 'TEXTO INICIAL';
+    SELECT TEXTO;
+    SET TEXTO = 'TEXTO MODIFICADO';
+    SELECT TEXTO;
+END//
+
+CALL MODIFICANDO_VALOR;
+
+-- exercicios
+DELIMITER //
+CREATE PROCEDURE `SP_EX_01` ()
+BEGIN
+	DECLARE NOME VARCHAR(10) DEFAULT 'João';
+    DECLARE IDADE TINYINT DEFAULT 10;
+    DECLARE DT_NASCIMENTO DATE DEFAULT '2007-01-10';
+    DECLARE CUSTO DECIMAL(4, 2) DEFAULT 10.23;
+    SELECT NOME, IDADE, DT_NASCIMENTO, CUSTO;
+END//
+
+CALL SP_EX_01;
