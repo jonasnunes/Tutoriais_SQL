@@ -1,0 +1,58 @@
+- 20 grandes mecanismos de armazenamento estão disponíveis
+- Mecanismos de armazenamento permite que haja uma separação entre a armazenagem
+e o código principal do banco de dados
+- Os mais usados são o MyISAM, InnoDB e MEMORY
+
+MyISAM
+
+- Não é transacional e não implementa mecanismos de bloqueio
+- Rápido para leitura
+- Problemático para muitas gravações
+- Nenhuma chave estrangeira suporta índices FULLTEXT para correspondência de texto
+- Nenhum cache de dados Cache de índice - pode ser especificado pelo nome
+- Implementa os índices HASH e BTREE
+- Bloqueio no nível da tabela
+- Atividade de leitura muito rápida, adequada para Data Warehouses
+- Dados compactados
+
+* Algumas variáveis de ambiente ligadas diretamente ao MyISAM
+
+key_buffer_size
+concurrent_insert
+delay_key_write
+max_write_lock_count
+preload_buffer_size
+
+* Utilitários dentro do MySQL para manipular tabelas do tipo MyISAM
+
+myisamchk
+myisampack
+myisam_ftdump
+
+InnoDB
+
+- O mecanismo de armazenamento transacional mais usado é o InnoDB
+- Trouxe suporte, para chaves estrangeiras para o mysqld
+
+* Algumas características
+
+- Suporte transacional completo
+- Bloqueio de nível de linha Suporte de chave estrangeira
+- Indexação usando índice BTREE
+- Cache de buffer configurável de ambos os índices e dados
+- Backup online sem bloqueio
+
+* Algumas variáveis de ambiente ligadas diretamente ao InnoDB
+
+Innodb_data_file_path
+Innodb_data_home_dir
+Innodb_file_per_table
+innodb_buffer_pool_size
+innodb_flush_log_at_trx_commit
+innodb_log_file_size
+
+Memory
+
+- Nenhum suporte de chave estrangeira
+- Muito rápido ler e escrever atividade devido a ser inteiramente na memória
+- Bloqueio no nível da tabela
