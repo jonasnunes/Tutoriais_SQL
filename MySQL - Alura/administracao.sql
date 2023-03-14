@@ -64,3 +64,64 @@ UNLOCK INSTANCE;
     
     mysql -uroot -p < c:\mysqladmin\sucos_vendas_full.sql
 */
+
+/*
+	Simulando várias consultas em um banco ao mesmo tempo usando o mysqlslap
+    
+    mysqlslap -uroot -p --concurrency=100 --iterations=10 --create-schema=sucos_vendas --query="SELECT * FROM NOTAS_FISCAIS WHERE DATA_VENDA = '20170101'";
+*/
+
+/*
+	- Criando um usuário
+    
+    CREATE USER 'user02'@'localhost' identified by 'user02';
+    
+    - Concedendo todos os privilégios
+    
+    GRANT ALL PRIVILEGES ON *.* TO 'admin01'@'localhost' WITH GRANT OPTION;
+    
+    - Excluindo um usuário
+    
+    DROP USER 'root'@'localhost';
+    
+    - Concedendo privilégios específicos ao usuário
+    
+    GRANT SELECT, INSERT, UPDATE, DELETE, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE
+    ON *.* TO 'admin02'@'localhost';
+    
+    - Privilégios para um usuário somente leitura
+    
+    GRANT SELECT, EXECUTE ON *.* TO 'user02'@'localhost';
+    
+    - Criando e dando privilégios para um usuário de backup
+    
+    CREATE USER 'backup01'@'localhost' identified by 'backup01';
+    GRANT SELECT, RELOAD, LOCK TABLES, REPLICATION CLIENT ON *.* TO 'backup01'@'localhost';
+    
+    - Criando e dando privilégios para um usuário que poderá acessar o banco de qualquer servidor
+    
+    CREATE USER 'admin_generico'@'%' identified by 'admin_generico';
+    GRANT ALL PRIVILEGES ON *.* TO 'admin_generico'@'%' WITH GRANT OPTION;
+    
+    - Criando, dando privilégios e limitando o total de bancos que o usuário pode ver
+    
+    CREATE USER 'user03'@'%' identified by 'user03';
+    GRANT SELECT, INSERT, UPDATE, DELETE, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE
+    ON sucos_vendas.* TO 'user03'@'%'
+    
+    - Criando, dando privilégios, limitando o total de bancos e o acesso as tabelas que o usuário pode ver
+    
+    CREATE USER 'user04'@'%' identified by 'user04';
+    GRANT SELECT, INSERT, UPDATE, DELETE ON sucos_vendas.tabela_de_clientes TO 'user04'@'%';
+    GRANT SELECT ON sucos_vendas.tabela_de_produtos TO 'user04'@'%';
+    
+    - Revogando privilégios
+    
+    REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'user02'@'localhost';
+*/
+
+-- visualizar todos os usuários do ambiente
+SELECT * FROM mysql.user;
+
+-- visualizar permissões específicas de cada usuário
+SHOW GRANTS FOR 'user02'@'localhost';
